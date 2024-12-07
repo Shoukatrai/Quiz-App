@@ -4,18 +4,24 @@
     margin: 0;
     padding: 0;
 }
-
+body{
+    height: 100vh;
+    background: radial-gradient(1224px at 10.6% 8.8%, rgb(255, 255, 255) 0%, rgb(153, 202, 251) 100.2%);
+}
 .quiz-login-container{
+    /* background-image: url(https://t4.ftcdn.net/jpg/03/45/88/07/360_F_345880772_zIT2mkdCzTthplO7xqaGGrMspN0jw0ll.jpg); */
     color: #0873B9;
-    width: 80%;
+    width: 50%;
     margin:auto;
     margin-top: 100px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 20px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    /* background-color: white; */
 }
 h1{
     color: #0873B9;
@@ -30,18 +36,12 @@ h1{
     align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
-    .quiz-login-container{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        /* margin-top: 20px; */
-    } 
-  }
+
 .form{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 30px;
 }
 .quiz-nbr{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -138,7 +138,6 @@ li{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
     display: none;
 }
 
@@ -162,3 +161,34 @@ span{
 #nxtBtn1{
     display: none;
 }
+
+.timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 20%;
+    margin: 0 auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+    .quiz-login-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 95%;
+        height: 95%
+    } 
+    .quiz-nbr{
+        width: 95%;
+      }
+      .quiz{
+        width: 95%;
+      }    
+  }

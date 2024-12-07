@@ -9,6 +9,39 @@ var rsltPage = document.getElementById("rsltPage");
 var questionEle = document.getElementById("questionEle");
 var optionEle = document.getElementById("optionEle");
 var pageNbr = document.getElementById("pageNbr")
+let minute = document.getElementById("minute")
+let second = document.getElementById("second")
+
+let sec = 30;
+// let min = 0;
+second.innerHTML = sec
+// minute.innerHTML = min
+let interval;
+const startTimer =()=>{
+    interval = setInterval(quizTimer, 1000)
+} 
+
+const stopTimer =()=>{
+    clearInterval(interval)
+}
+
+const quizTimer =()=>{
+    sec--;
+    second.innerHTML = sec
+    if(sec == 0){
+        nextHtmlQuestion()
+        sec=30;
+    second.innerHTML = sec
+
+    }
+} 
+
+
+
+
+
+
+
 
 function showQUiz(){
     if(UserName.value.length < 3 || text.value.length < 3){
@@ -16,6 +49,7 @@ function showQUiz(){
     }else{
         intContainer.style.display = "none"
         quizNbr.style.display = "block"
+        startTimer()
     }
 }
 
@@ -300,6 +334,7 @@ function checkAns(element){
 }
 
 function nextHtmlQuestion(){
+    sec = 30;
     if(indexNumber < htmlQuestions.length-1){
         indexNumber++
         startHtmlQuiz()
@@ -312,6 +347,7 @@ function nextHtmlQuestion(){
 }
 
 function submit(){
+    stopTimer()
     quiz1.style.display = "none"
     rsltPage.style.display = "block"
     var crtAns = document.getElementById("crtAns")
@@ -320,6 +356,7 @@ function submit(){
     crtAns.innerHTML = correctAnswer;
     wrgAns.innerHTML = wrongAnswer;
     prctAns.innerHTML = `${(correctAnswer/htmlQuestions.length)*100}%`;
+
 
 }
 var msg = document.getElementById("msg")
@@ -335,297 +372,7 @@ function showResultPage(){
 }
 
 
-// console.log(indexNumber)
-// var cssQuestions = [
-//     {
-//         "id": 1,
-//         "question": "What does CSS stand for?",
-//         "options": {
-//             "a": "Cascading Style Sheets",
-//             "b": "Colorful Style Sheets",
-//             "c": "Creative Style Sheets",
-//             "d": "Computer Style Sheets"
-//         },
-//         "answer": "Cascading Style Sheets"
-//     },
-//     {
-//         "id": 2,
-//         "question": "Which property is used to change the background color of an element?",
-//         "options": {
-//             "a": "background-color",
-//             "b": "color",
-//             "c": "bgcolor",
-//             "d": "background-style"
-//         },
-//         "answer": "background-color"
-//     },
-//     {
-//         "id": 3,
-//         "question": "Which CSS property controls the text size?",
-//         "options": {
-//             "a": "font-size",
-//             "b": "text-size",
-//             "c": "size",
-//             "d": "text-style"
-//         },
-//         "answer": "font-size"
-//     },
-//     {
-//         "id": 4,
-//         "question": "Which CSS property is used to make text bold?",
-//         "options": {
-//             "a": "font-weight",
-//             "b": "font-bold",
-//             "c": "text-bold",
-//             "d": "weight-bold"
-//         },
-//         "answer": "font-weight"
-//     },
-//     {
-//         "id": 5,
-//         "question": "How do you add a comment in CSS?",
-//         "options": {
-//             "a": "/* This is a comment */",
-//             "b": "// This is a comment",
-//             "c": "# This is a comment",
-//             "d": "<!-- This is a comment -->"
-//         },
-//         "answer": "/* This is a comment */"
-//     },
-//     {
-//         "id": 6,
-//         "question": "Which property is used to change the font of an element?",
-//         "options": {
-//             "a": "font-family",
-//             "b": "font-type",
-//             "c": "font-style",
-//             "d": "font-text"
-//         },
-//         "answer": "font-family"
-//     },
-//     {
-//         "id": 7,
-//         "question": "Which property is used to align text horizontally?",
-//         "options": {
-//             "a": "text-align",
-//             "b": "align",
-//             "c": "horizontal-align",
-//             "d": "text-position"
-//         },
-//         "answer": "text-align"
-//     },
-//     {
-//         "id": 8,
-//         "question": "Which property is used to add space inside the border of an element?",
-//         "options": {
-//             "a": "padding",
-//             "b": "margin",
-//             "c": "spacing",
-//             "d": "border-space"
-//         },
-//         "answer": "padding"
-//     },
-//     {
-//         "id": 9,
-//         "question": "Which CSS property controls the visibility of an element?",
-//         "options": {
-//             "a": "visibility",
-//             "b": "display",
-//             "c": "hidden",
-//             "d": "opacity"
-//         },
-//         "answer": "visibility"
-//     },
-//     {
-//         "id": 10,
-//         "question": "How do you make a list not display bullet points?",
-//         "options": {
-//             "a": "list-style-type: none;",
-//             "b": "list: none;",
-//             "c": "text-decoration: none;",
-//             "d": "list-style: no-bullets;"
-//         },
-//         "answer": "list-style-type: none;"
-//     },
-//     {
-//         "id": 11,
-//         "question": "Which CSS property is used to set the space between lines of text?",
-//         "options": {
-//             "a": "line-height",
-//             "b": "text-height",
-//             "c": "spacing",
-//             "d": "letter-spacing"
-//         },
-//         "answer": "line-height"
-//     },
-//     {
-//         "id": 12,
-//         "question": "How do you select an element with the id 'header' in CSS?",
-//         "options": {
-//             "a": "#header",
-//             "b": ".header",
-//             "c": "header",
-//             "d": "*header"
-//         },
-//         "answer": "#header"
-//     },
-//     {
-//         "id": 13,
-//         "question": "Which CSS property is used to change the text color of an element?",
-//         "options": {
-//             "a": "color",
-//             "b": "text-color",
-//             "c": "font-color",
-//             "d": "text-style"
-//         },
-//         "answer": "color"
-//     },
-//     {
-//         "id": 14,
-//         "question": "How do you apply a CSS style to a class?",
-//         "options": {
-//             "a": ".classname",
-//             "b": "#classname",
-//             "c": "*classname",
-//             "d": "classname"
-//         },
-//         "answer": ".classname"
-//     },
-//     {
-//         "id": 15,
-//         "question": "Which property is used to set the width of an element's border?",
-//         "options": {
-//             "a": "border-width",
-//             "b": "border-thickness",
-//             "c": "border-size",
-//             "d": "border-style"
-//         },
-//         "answer": "border-width"
-//     },
-//     {
-//         "id": 16,
-//         "question": "Which CSS property is used to specify the stacking order of elements?",
-//         "options": {
-//             "a": "z-index",
-//             "b": "position",
-//             "c": "stack",
-//             "d": "display"
-//         },
-//         "answer": "z-index"
-//     },
-//     {
-//         "id": 17,
-//         "question": "Which property specifies whether an element is floated left or right?",
-//         "options": {
-//             "a": "float",
-//             "b": "position",
-//             "c": "align",
-//             "d": "clear"
-//         },
-//         "answer": "float"
-//     },
-//     {
-//         "id": 18,
-//         "question": "What is the default position property in CSS?",
-//         "options": {
-//             "a": "static",
-//             "b": "relative",
-//             "c": "absolute",
-//             "d": "fixed"
-//         },
-//         "answer": "static"
-//     },
-//     {
-//         "id": 19,
-//         "question": "Which property specifies the amount of space between the content and border?",
-//         "options": {
-//             "a": "padding",
-//             "b": "margin",
-//             "c": "spacing",
-//             "d": "border-spacing"
-//         },
-//         "answer": "padding"
-//     },
-//     {
-//         "id": 20,
-//         "question": "Which CSS unit is relative to the size of the root element?",
-//         "options": {
-//             "a": "rem",
-//             "b": "em",
-//             "c": "px",
-//             "d": "%"
-//         },
-//         "answer": "rem"
-//     }
-// ]
-
-// var nxtBtn1 = document.getElementById("nxtBtn1");
-// index = 0
-// function startCssQuiz(){
-//     quizNbr.style.display = "none";
-//     quiz1.style.display = "block";
-    
-//     nxtBtn1.style.display = "block"
-//     nxtBtn.style.display = "none"
-//     index = 0;
-    
-    
-//     var optionObj = cssQuestions[index].options;
-//     if(index+1 < 10){
-//         questionEle.innerHTML =  `0${index+1}: ${cssQuestions[index].question}`;
-//     }else{
-//         questionEle.innerHTML =  `${index+1}: ${cssQuestions[index].question}`;
-//     }
-    
-//     optionEle.innerHTML = "";
-//     for (var key in optionObj){
-//         optionEle.innerHTML += `<li onclick="checkCssAns(this)">${optionObj[key]}</li>`
-//     }
-// }
-
-// function nextCssQuestion(){
-//     console.log("hbshxbshbxh")
-//     if(index < cssQuestions.length-1){
-//         index++;
-//         startCssQuiz()
-//         // nxtBtn.disabled = true
-//     }else{
-//         nxtBtn1.style.display = "none"
-//         sbtmBtn.style.display = "block"
-//     }
-//     pageNbr.innerHTML = `${index + 1}/${cssQuestions.length}`
-// }
-
-
-// function checkCssAns(element){
-//     var allLiEle = optionEle.children;
-//     var ans = cssQuestions[index].answer
-//     console.log(ans)
-//     var result = element.innerHTML == cssQuestions[index].answer;
-//     if(result){
-//         element.style.background = "green";    
-//         element.style.color = "white";
-//         correctAnswer++;    
-//     }else{
-//         element.style.background = "red";   
-//         element.style.color = "white";
-//         wrongAnswer++    
-//     }
-    
-//     for(var i= 0; i < allLiEle.length; i++){
-//         if(allLiEle[i].innerHTML.toLowerCase() == ans.toLowerCase()){
-//             allLiEle[i].style.background = "green" 
-//             break;
-//         }
-        
-//     }
-    
-//     for(var i= 0; i < allLiEle.length; i++){
-//         allLiEle[i].style.pointerEvents = "none"
-//     }
-//     nxtBtn.disabled = false;
-// }
-
+ 
 
 
 
